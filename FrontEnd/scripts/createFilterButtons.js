@@ -1,6 +1,8 @@
 import { displayData } from "./displayData.js";
+import { getData } from "./getData.js";
 
-export const createFilterButtons = (data) => {
+export const createFilterButtons = async () => {
+  const data = await getData();
   const filterContainer = document.querySelector(".filter");
   const categories = new Set(data.map((item) => item.category.name));
 
