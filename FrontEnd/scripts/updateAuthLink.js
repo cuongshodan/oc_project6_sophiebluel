@@ -5,20 +5,52 @@ export const updateAuthLink = () => {
   if (token) {
     authLink.textContent = "logout";
     authLink.href = "#"; // Remove link behavior for logout
-    document.getElementById("modifyButton").style.display = "block";
+    createModifyButton(); // Create modify button if logged in
+    removeFilter(); // Ensure filter is removed if not logged in
   } else {
     authLink.textContent = "login";
     authLink.href = "./login.html"; // Link to login page
-    document.getElementById("modifyButton").style.display = "none";
+    removeModifyButton(); // Ensure modify button is removed if not logged in
   }
 
   authLink.addEventListener("click", (event) => {
     if (localStorage.getItem("authToken")) {
       event.preventDefault(); // Prevent default link behavior if logging out
       localStorage.removeItem("authToken");
+      window.location.reload(); // Reload the page to reflect changes
       updateAuthLink(); // Update the link to login
     }
   });
+};
+
+const createModifyButton = () => {
+  if (!document.getElementById("modifyButton")) {
+    const button = document.createElement("div");
+    const img = document.createElement("img");
+
+    img.src = "./assets/icons/modify.svg";
+    img.alt = "Modifier";
+
+    button.appendChild(img);
+    button.id = "modifyButton";
+    img.style.marginRight = "8px";
+    button.appendChild(document.createTextNode("modifier"));
+    document.querySelector("#title").appendChild(button);
+  }
+};
+
+const removeModifyButton = () => {
+  const button = document.getElementById("modifyButton");
+  if (button) {
+    button.remove();
+  }
+};
+
+const removeFilter = () => {
+  const filter = document.querySelector(".filter");
+  if (filter) {
+    filter.remove();
+  }
 };
 
 // Initial update of the auth link based on the presence of token
