@@ -22,6 +22,7 @@ html {
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s both;
 }
 
 .modal-wrapper {
@@ -31,4 +32,51 @@ html {
   max-height: calc(100vh - 20px);
   padding: 20px;
   background-color: #fff;
+  animation: slideFromTop 0.5s both;
+}
+
+.modal[aria-hidden="true"] {
+  animation-name: fadeOut;
+  /* animation-direction: reverse; */
+}
+
+.modal[aria-hidden="true"] .modal-wrapper {
+  animation-name: slideToBottom;
+  /* animation-direction: reverse; */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slideToBottom {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(50px);
+  }
 }

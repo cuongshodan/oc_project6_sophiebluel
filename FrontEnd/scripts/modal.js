@@ -23,7 +23,12 @@ const closeModal = (e) => {
   if (modal === null) return;
   if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
   e.preventDefault();
+
+  /* Animation-direction reversed
   modal.style.display = "none";
+  modal.offsetWidth;
+  modal.style.display = null; */
+
   modal.setAttribute("aria-hidden", "true");
   modal.removeAttribute("aria-modal");
   modal.removeEventListener("click", closeModal);
@@ -33,7 +38,13 @@ const closeModal = (e) => {
   modal
     .querySelector(".js-modal-stop")
     .removeEventListener("click", stopPropagation);
-  modal = null;
+
+  const hideModal = () => {
+    modal.style.display = "none";
+    modal.removeEventListener("animationend", hideModal);
+    modal = null;
+  };
+  modal.addEventListener("animationend", hideModal);
 };
 
 const stopPropagation = (e) => {
