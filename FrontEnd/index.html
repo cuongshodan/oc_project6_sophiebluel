@@ -12,6 +12,7 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./styles/modal.css" />
   </head>
   <body>
     <header>
@@ -51,9 +52,11 @@
       </section>
       <section id="portfolio">
         <div id="title">
-			<h2>Mes Projets</h2>
-			<!-- <div><img src="./assets/icons/modify.svg">&nbsp;modifier</div> -->
-		</div>
+          <h2>Mes Projets</h2>
+          <!-- <a href="#modal1" class="js-modal" style="display: none">
+            <img src="./assets/icons/modify.svg" />modifier
+          </a> -->
+        </div>
 
         <div class="filter">
           <!--	Here comes the filters	-->
@@ -85,5 +88,28 @@
       </nav>
     </footer>
     <script type="module" src="./scripts/main.js"></script>
+    <script src="./scripts/modal.js"></script>
+
+    <aside
+      id="modal1"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="titlemodal"
+      style="display: none"
+    >
+      <div class="modal-wrapper js-modal-stop">
+        <button class="js-modal-close">X</button>
+        <div>
+          <h2>Galerie photo</h2>
+          <div class="gallery">
+            <!--	Here comes the projects	-->
+            hello
+          </div>
+          <hr />
+          <button>Ajouter une photo</button>
+        </div>
+      </div>
+    </aside>
   </body>
 </html>

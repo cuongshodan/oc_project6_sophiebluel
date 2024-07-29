@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/modal.css" />
+  </head>
+  <body>
+    <a href="#modal1" class="js-modal">Ouvrir la boite modale</a>
+    <a href="http://google.com">oyoyoyoyoyo</a>
+
+    <aside
+      id="modal1"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="titlemodal"
+      style="display: none"
+    >
+      <div class="modal-wrapper js-modal-stop">
+        <div>
+          <button class="js-modal-close">X</button>
+        </div>
+        <div>
+          <h2>Galerie photo</h2>
+          <hr />
+          <button>Ajouter une photo</button>
+        </div>
+      </div>
+    </aside>
+    <script src="./scripts/modal.js"></script>
+  </body>
+</html>

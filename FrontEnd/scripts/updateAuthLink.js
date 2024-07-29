@@ -24,19 +24,28 @@ export const updateAuthLink = () => {
 };
 
 const createModifyButton = () => {
+  
   if (!document.getElementById("modifyButton")) {
-    const button = document.createElement("div");
+    const button = document.createElement("a");
     const img = document.createElement("img");
 
     img.src = "./assets/icons/modify.svg";
     img.alt = "Modifier";
+    img.style.marginRight = "8px";
 
     button.appendChild(img);
     button.id = "modifyButton";
-    img.style.marginRight = "8px";
+    button.href = "#modal1";
+    button.className = "js-modal";
+
     button.appendChild(document.createTextNode("modifier"));
     document.querySelector("#title").appendChild(button);
   }
+
+  /* const button = document.querySelector(".js-modal");
+  if (button) {
+    button.style.display = "block"; // Change display property to block
+  } */
 };
 
 const removeModifyButton = () => {

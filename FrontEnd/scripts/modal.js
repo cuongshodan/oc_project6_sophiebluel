@@ -65,15 +65,17 @@ const focusInModal = (e) => {
   console.log(index);
 };
 
-document.querySelectorAll(".js-modal").forEach((a) => {
-  a.addEventListener("click", openModal);
-});
+export const initializeModal = () => {
+  document.querySelectorAll(".js-modal").forEach((a) => {
+    a.addEventListener("click", openModal);
+  });
 
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" || e.key === "Esc") {
-    closeModal(e);
-  }
-  if (e.key === "Tab" && modal !== null) {
-    focusInModal(e);
-  }
-});
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || e.key === "Esc") {
+      closeModal(e);
+    }
+    if (e.key === "Tab" && modal !== null) {
+      focusInModal(e);
+    }
+  });
+};
