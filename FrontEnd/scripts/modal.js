@@ -1,3 +1,5 @@
+import { displayDataModal } from "./displayDataModal.js";
+
 let modal = null;
 const focusableSelector = "button, a, input, textarea";
 let focusables = [];
@@ -17,6 +19,7 @@ const openModal = (e) => {
   modal
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
+  displayDataModal();
 };
 
 const closeModal = (e) => {
@@ -65,7 +68,7 @@ const focusInModal = (e) => {
   console.log(index);
 };
 
-export const initializeModal = () => {
+export const initializeModal = async () => {
   document.querySelectorAll(".js-modal").forEach((a) => {
     a.addEventListener("click", openModal);
   });

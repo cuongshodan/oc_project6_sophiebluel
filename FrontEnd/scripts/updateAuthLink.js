@@ -1,4 +1,4 @@
-export const updateAuthLink = () => {
+export const updateAuthLink = async () => {
   const authLink = document.querySelector(".authLink");
   const token = localStorage.getItem("authToken");
 
@@ -61,6 +61,3 @@ const removeFilter = () => {
     filter.remove();
   }
 };
-
-// Initial update of the auth link based on the presence of token
-updateAuthLink();
