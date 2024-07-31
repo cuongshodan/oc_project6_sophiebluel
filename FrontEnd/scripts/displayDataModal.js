@@ -15,11 +15,11 @@ export const displayDataModal = async (categoryFilter = "Tous") => {
     img.src = item.imageUrl;
     img.alt = item.title;
 
-    const figcaption = document.createElement("figcaption");
-    figcaption.innerText = item.title;
+    /* const figcaption = document.createElement("figcaption"); */
+    /* figcaption.innerText = item.title; */
 
     figure.appendChild(img);
-    figure.appendChild(figcaption);
+    /* figure.appendChild(figcaption); */
 
     gallery.appendChild(figure);
   });
