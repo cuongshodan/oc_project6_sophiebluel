@@ -1,11 +1,12 @@
 import { displayDataModal } from "./displayDataModal.js";
+import { deleteProject } from "./deleteProject.js";
 
 let modal = null;
 const focusableSelector = "button, a, input, textarea";
 let focusables = [];
 let previouslyFocusedElement = null;
 
-const openModal = (e) => {
+const openModal = async (e) => {
   e.preventDefault();
   modal = document.querySelector(e.target.getAttribute("href"));
   focusables = Array.from(modal.querySelectorAll(focusableSelector));
@@ -19,7 +20,9 @@ const openModal = (e) => {
   modal
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
-  displayDataModal();
+
+  await displayDataModal();
+  await deleteProject();
 };
 
 const closeModal = (e) => {
