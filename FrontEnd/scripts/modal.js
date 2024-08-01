@@ -6,7 +6,6 @@ const focusableSelector = "button, a, input, textarea";
 let focusables = [];
 let previouslyFocusedElement = null;
 
-
 let deleteItems = [];
 
 const openModal = async (e) => {
@@ -38,8 +37,6 @@ const closeModal = (e) => {
 
   e.preventDefault();
 
-  
-
   modal.setAttribute("aria-hidden", "true");
   modal.removeAttribute("aria-modal");
   modal.removeEventListener("click", closeModal);
@@ -57,7 +54,7 @@ const closeModal = (e) => {
   };
 
   modal.addEventListener("animationend", hideModal);
-  console.log('Modal closing');
+  console.log("Modal closing");
   deleteFetch(deleteItems);
 };
 
@@ -80,12 +77,10 @@ export const initializeModal = async () => {
   });
 };
 
-
-
-
-const deleteProject = () => {
+export const deleteProject = () => {
   const deleteButtons = document.querySelectorAll(".deleteButton");
 
+  
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
@@ -93,17 +88,28 @@ const deleteProject = () => {
 
       const projectId = button.id;
 
-      if (!deleteItems.includes(projectId)) {
-        deleteItems.push(projectId);
-        console.log(`Project with ID ${projectId} deleted successfully`);
-        // Remove the item from the DOM
-        button.parentElement.remove();
-      } else {
-        console.log(`Project with ID ${projectId} is already deleted`);
-      }
+      // Ask for confirmation before deletion
+      const userConfirmed = window.confirm(
+        `Are you sure you want to delete item nr ${projectId}?`
+      );
 
-      console.log(deleteItems);
+
+      if (userConfirmed) {
+        if (!deleteItems.includes(projectId)) {
+          deleteItems.push(projectId);
+          console.log(`Project with ID ${projectId} deleted successfully`);
+          // Remove the item from the DOM
+          button.parentElement.remove();
+        } else {
+          console.log(`Project with ID ${projectId} is already deleted`);
+        }
+
+        console.log(deleteItems);
+      } else {
+        console.log(
+          `Deletion of project ID ${projectId} was canceled by the user.`
+        );
+      }
     });
   });
 };
-
