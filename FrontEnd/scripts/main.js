@@ -11,4 +11,4 @@ const setup = async () => {
   await initializeModal();
 };
 
-setup();
+await setup();

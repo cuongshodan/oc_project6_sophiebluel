@@ -7,7 +7,6 @@ export const displayDataModal = async (categoryFilter = "Tous") => {
   // Clear the existing content
   gallery.innerHTML = "";
 
-
   data.forEach((item) => {
     const figure = document.createElement("figure");
 
@@ -22,12 +21,8 @@ export const displayDataModal = async (categoryFilter = "Tous") => {
     deleteButton.className = "deleteButton";
     deleteButton.id = item.id;
 
-    /* const figcaption = document.createElement("figcaption"); */
-    /* figcaption.innerText = item.title; */
-
     figure.appendChild(img);
     figure.appendChild(deleteButton);
-    /* figure.appendChild(figcaption); */
 
     gallery.appendChild(figure);
   });

@@ -1,10 +1,13 @@
 import { displayDataModal } from "./displayDataModal.js";
-import { deleteProject } from "./deleteProject.js";
+import { deleteFetch } from "./deleteFetch.js";
 
 let modal = null;
 const focusableSelector = "button, a, input, textarea";
 let focusables = [];
 let previouslyFocusedElement = null;
+
+
+let deleteItems = [];
 
 const openModal = async (e) => {
   e.preventDefault();
@@ -15,25 +18,27 @@ const openModal = async (e) => {
   modal.style.display = null;
   modal.removeAttribute("aria-hidden");
   modal.setAttribute("aria-modal", "true");
+
   modal.addEventListener("click", closeModal);
   modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
+
+  // Prevent clicks inside the modal content from closing the modal
   modal
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
 
-  await displayDataModal();
-  await deleteProject();
+  await displayDataModal(); // Load data into the modal
+  deleteProject();
 };
 
 const closeModal = (e) => {
   if (modal === null) return;
+
   if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
+
   e.preventDefault();
 
-  /* Animation-direction reversed
-  modal.style.display = "none";
-  modal.offsetWidth;
-  modal.style.display = null; */
+  
 
   modal.setAttribute("aria-hidden", "true");
   modal.removeAttribute("aria-modal");
@@ -50,25 +55,14 @@ const closeModal = (e) => {
     modal.removeEventListener("animationend", hideModal);
     modal = null;
   };
+
   modal.addEventListener("animationend", hideModal);
+  console.log('Modal closing');
+  deleteFetch(deleteItems);
 };
 
 const stopPropagation = (e) => {
-  e.stopPropagation();
-};
-
-const focusInModal = (e) => {
-  e.preventDefault();
-  let index = focusables.findIndex((f) => f === modal.querySelector(":focus"));
-  if (e.shiftKey === true) {
-    index--;
-  } else {
-    index++;
-  }
-  if (index >= focusables.length) index = 0;
-  if (index < 0) index = focusables.length - 1;
-  focusables[index].focus();
-  console.log(index);
+  e.stopPropagation(); // This prevents closing the modal when clicking inside it
 };
 
 export const initializeModal = async () => {
@@ -85,3 +79,31 @@ export const initializeModal = async () => {
     }
   });
 };
+
+
+
+
+const deleteProject = () => {
+  const deleteButtons = document.querySelectorAll(".deleteButton");
+
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const projectId = button.id;
+
+      if (!deleteItems.includes(projectId)) {
+        deleteItems.push(projectId);
+        console.log(`Project with ID ${projectId} deleted successfully`);
+        // Remove the item from the DOM
+        button.parentElement.remove();
+      } else {
+        console.log(`Project with ID ${projectId} is already deleted`);
+      }
+
+      console.log(deleteItems);
+    });
+  });
+};
+
