@@ -30,16 +30,9 @@ const openModal = async (e) => {
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
 
-  if (targetModal === "#modal1") {
-    console.log("Modal1 opening");
-    await displayDataModal(); // Load data into the modal if it's #modal1
-    deleteProject(); // Initialize delete functionality if it's #modal1
-    addPhotoButton();
-  } else if (targetModal === "#modal2") {
-    console.log("Modal2 opening");
-  } else {
-    console.log("Modal opening");
-  }
+  await displayDataModal(); // Load data into the modal if it's #modal1
+  deleteProject(); // Initialize delete functionality if it's #modal1
+  addPhotoButton();
 };
 
 const closeModal = (e) => {
@@ -68,7 +61,7 @@ const closeModal = (e) => {
   modal.addEventListener("animationend", hideModal);
   console.log("Modal closing");
   deleteFetch(deleteItems);
-  location.reload();
+ 
 };
 
 // Add event listener to the "Ajouter une photo" button to close #modal1 and open #modal2
