@@ -22,13 +22,16 @@ const openModal = async (e) => {
   modal.setAttribute("aria-modal", "true");
 
   modal.addEventListener("click", closeModal);
-  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
-  /* modal.querySelector(".js-modal2-close").addEventListener("click", closeModal); */
+
+  modal.querySelectorAll(".js-modal-close").forEach((element) => {
+    element.addEventListener("click", closeModal);
+  });
 
   // Prevent clicks inside the modal content from closing the modal
-  modal
-    .querySelector(".js-modal-stop")
-    .addEventListener("click", stopPropagation);
+
+  modal.querySelectorAll(".js-modal-stop").forEach((element) => {
+    element.addEventListener("click", stopPropagation);
+  });
 
   await displayDataModal(); // Load data into the modal if it's #modal1
   deleteProject(); // Initialize delete functionality if it's #modal1
@@ -45,12 +48,15 @@ const closeModal = (e) => {
   modal.setAttribute("aria-hidden", "true");
   modal.removeAttribute("aria-modal");
   modal.removeEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-close")
-    .removeEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-stop")
-    .removeEventListener("click", stopPropagation);
+  // Loop through all elements with the class "js-modal-close" and remove the event listener
+  modal.querySelectorAll(".js-modal-close").forEach((element) => {
+    element.removeEventListener("click", closeModal);
+  });
+
+  // Loop through all elements with the class "js-modal-stop" and remove the event listener
+  modal.querySelectorAll(".js-modal-stop").forEach((element) => {
+    element.removeEventListener("click", stopPropagation);
+  });
 
   const hideModal = () => {
     modal.style.display = "none";
