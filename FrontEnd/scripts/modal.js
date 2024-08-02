@@ -10,7 +10,10 @@ let deleteItems = [];
 
 const openModal = async (e) => {
   e.preventDefault();
-  modal = document.querySelector(e.target.getAttribute("href"));
+
+  const targetModal = e.target.getAttribute("href");
+
+  modal = document.querySelector(targetModal);
   focusables = Array.from(modal.querySelectorAll(focusableSelector));
   previouslyFocusedElement = document.querySelector(":focus");
   focusables[0].focus();
@@ -20,15 +23,23 @@ const openModal = async (e) => {
 
   modal.addEventListener("click", closeModal);
   modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
+  /* modal.querySelector(".js-modal2-close").addEventListener("click", closeModal); */
 
   // Prevent clicks inside the modal content from closing the modal
   modal
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
 
-  await displayDataModal(); // Load data into the modal
-  addPhotoButton();
-  deleteProject();
+  if (targetModal === "#modal1") {
+    console.log("Modal1 opening");
+    await displayDataModal(); // Load data into the modal if it's #modal1
+    deleteProject(); // Initialize delete functionality if it's #modal1
+    addPhotoButton();
+  } else if (targetModal === "#modal2") {
+    console.log("Modal2 opening");
+  } else {
+    console.log("Modal opening");
+  }
 };
 
 const closeModal = (e) => {
@@ -51,13 +62,16 @@ const closeModal = (e) => {
   const hideModal = () => {
     modal.style.display = "none";
     modal.removeEventListener("animationend", hideModal);
-    modal = null;
+    /* modal = null; */
   };
 
   modal.addEventListener("animationend", hideModal);
   console.log("Modal closing");
   deleteFetch(deleteItems);
+  location.reload();
 };
+
+// Add event listener to the "Ajouter une photo" button to close #modal1 and open #modal2
 
 const stopPropagation = (e) => {
   e.stopPropagation(); // This prevents closing the modal when clicking inside it
@@ -82,9 +96,10 @@ const addPhotoButton = () => {
   const addPhotoButton = document.querySelector(".addPhotoButton");
 
   addPhotoButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
     console.log("Add photo button clicked");
+
+    document.querySelector(".modal-wrapper1").style.display = "none";
+    document.querySelector(".modal-wrapper2").style.display = "flex";
   });
 };
 

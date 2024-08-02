@@ -24,7 +24,6 @@ export const updateAuthLink = async () => {
 };
 
 const createModifyButton = () => {
-  
   if (!document.getElementById("modifyButton")) {
     const button = document.createElement("a");
     const img = document.createElement("img");
@@ -41,6 +40,7 @@ const createModifyButton = () => {
     button.appendChild(document.createTextNode("modifier"));
     document.querySelector("#title").appendChild(button);
   }
+
 
   /* const button = document.querySelector(".js-modal");
   if (button) {
