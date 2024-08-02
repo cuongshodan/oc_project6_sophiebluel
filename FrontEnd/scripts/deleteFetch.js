@@ -33,5 +33,8 @@ export const deleteFetch = async (projectItems) => {
       console.error(`Error deleting project with ID ${projectId}:`, error);
     }
   }
-  location.reload();
+  setTimeout(() => {
+    location.reload();
+  }, 300);
+  
 };

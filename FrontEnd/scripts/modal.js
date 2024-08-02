@@ -61,7 +61,6 @@ const closeModal = (e) => {
   modal.addEventListener("animationend", hideModal);
   console.log("Modal closing");
   deleteFetch(deleteItems);
- 
 };
 
 // Add event listener to the "Ajouter une photo" button to close #modal1 and open #modal2
