@@ -27,6 +27,7 @@ const openModal = async (e) => {
     .addEventListener("click", stopPropagation);
 
   await displayDataModal(); // Load data into the modal
+  addPhotoButton();
   deleteProject();
 };
 
@@ -77,10 +78,19 @@ export const initializeModal = async () => {
   });
 };
 
-export const deleteProject = () => {
+const addPhotoButton = () => {
+  const addPhotoButton = document.querySelector(".addPhotoButton");
+
+  addPhotoButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Add photo button clicked");
+  });
+};
+
+const deleteProject = () => {
   const deleteButtons = document.querySelectorAll(".deleteButton");
 
-  
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
@@ -92,7 +102,6 @@ export const deleteProject = () => {
       const userConfirmed = window.confirm(
         `Are you sure you want to delete item nr ${projectId}?`
       );
-
 
       if (userConfirmed) {
         if (!deleteItems.includes(projectId)) {
