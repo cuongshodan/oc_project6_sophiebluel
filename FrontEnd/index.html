@@ -126,18 +126,23 @@
             <h3>Ajout photo</h3>
             <div class="modal-body">
               <form class="formModal">
-                <div class="debug">
-                  <label for="photoUpload">Add Photo:</label>
+                <div class="formAddPhoto">
+                  <img
+                    src="/FrontEnd/assets/icons/imgUp.svg"
+                    alt="icon photoUpload"
+                  />
                   <input
                     type="file"
                     id="photoUpload"
+                    class="fileInput"
                     name="photoUpload"
                     accept="image/*"
                   />
+                  <button class="customButton">+ Ajouter photo</button>
+                  <label>jpg, png : 4mo max</label>
                 </div>
-
-                <div class="">
-                  <label for="formTitle">Title:</label>
+                <div class="titleInputForm">
+                  <label for="formTitle" class="margin-bottom">Titre</label>
                   <input
                     class="titleInputBox"
                     type="text"
@@ -147,9 +152,14 @@
                     required
                   />
                 </div>
-                <div class="debug">
-                  <label for="category">Category:</label>
-                  <select id="category" name="category" required>
+                <div class="categoriesSelectForm">
+                  <label for="category" class="margin-bottom">Catégorie</label>
+                  <select
+                    id="category"
+                    class="selectCategory"
+                    name="category"
+                    required
+                  >
                     <option value="" disabled selected>
                       Select a category
                     </option>
@@ -158,9 +168,9 @@
                     <option value="category3">Category 3</option>
                     <!-- Add more categories as needed -->
                   </select>
-                </div>
-                <div class="debug">
-                  <button type="submit">Validate</button>
+                </div> 
+                <div class="validateButtonContainer">
+                  <button type="submit" class="validateButton">Valider</button>
                 </div>
               </form>
             </div>

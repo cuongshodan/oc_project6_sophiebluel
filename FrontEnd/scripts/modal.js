@@ -1,5 +1,6 @@
 import { displayDataModal } from "./displayDataModal.js";
 import { deleteFetch } from "./deleteFetch.js";
+import { addPhotoForm } from "./addPhotoModal.js";
 
 let modal = null;
 const focusableSelector = "button, a, input, textarea";
@@ -36,6 +37,8 @@ const openModal = async (e) => {
   await displayDataModal(); // Load data into the modal if it's #modal1
   deleteProject(); // Initialize delete functionality if it's #modal1
   addPhotoButton();
+  addPhotoForm();
+  
 };
 
 const closeModal = (e) => {
