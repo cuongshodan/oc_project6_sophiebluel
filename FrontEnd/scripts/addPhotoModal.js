@@ -14,6 +14,11 @@ const addPhotoForm = () => {
   });
 };
 
+
+
+
+
+
 const backToFirstModal = () => {
   const backToFirstModalButton = document.querySelector(
     ".modal-back"
