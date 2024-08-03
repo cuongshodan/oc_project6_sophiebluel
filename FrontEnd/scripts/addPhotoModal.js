@@ -1,4 +1,4 @@
-export const addPhotoForm = () => {
+const addPhotoForm = () => {
   const fileInput = document.getElementById("photoUpload");
   const customButton = document.querySelector(".customButton");
 
@@ -13,3 +13,21 @@ export const addPhotoForm = () => {
     }
   });
 };
+
+const backToFirstModal = () => {
+  const backToFirstModalButton = document.querySelector(
+    ".modal-back"
+  );
+
+  backToFirstModalButton.addEventListener("click", function () {
+    console.log("back to first modal button clicked");
+    document.querySelector(".modal-wrapper1").style.display = "flex";
+    document.querySelector(".modal-wrapper2").style.display = "none";
+  });
+};
+
+
+export const initAddPhotoModal = () => {
+  addPhotoForm();
+  backToFirstModal();
+}
