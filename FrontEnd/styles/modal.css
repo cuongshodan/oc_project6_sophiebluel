@@ -1,5 +1,5 @@
 *:focus {
-  box-shadow: 0 0 10px blue;
+  /* box-shadow: 0 0 10px blue; */
 }
 
 .modal {
@@ -95,9 +95,16 @@
   justify-content: end;
   width: 100%;
   padding: 10px;
+  border: 2px solid red;
+  
 }
 
-.js-modal-close {
+.space-between {
+  justify-content: space-between;
+}
+
+
+.js-modal-close, .modal-back {
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -107,6 +114,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 440px;
+ 
   border: 2px solid red;
 }
 
@@ -114,14 +123,42 @@
   margin: 30px 0 40px 0;
   font-size: 22px;
   font-weight: 800;
+  
+}
+
+.formModal {
+  border: 2px solid green;
+}
+
+.titleInputForm {
+  background-color: yellow;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.titleInputBox {
+  height: 25px;
+  width: 100%;
+  border: none;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+
+}
+
+.debug {
+  border: 2px solid blue;
 }
 
 .galleryModal {
+  border: 2px solid red;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   row-gap: 30px;
   margin: 10px 10px 20px 10px;
   width: 440px;
+  height: 370px;
   padding-bottom: 80px;
   border-bottom: 1px solid #1d6154;
 }

@@ -114,8 +114,8 @@
           </div>
         </div>
         <div class="modal-wrapper2 js-modal-stop">
-          <div class="modal-header">
-            <button>
+          <div class="modal-header space-between">
+            <button class="modal-back">
               <img src="./assets/icons/backArrow.svg" alt="back button" />
             </button>
             <button class="js-modal-close">
@@ -126,7 +126,7 @@
             <h3>Ajout photo</h3>
             <div class="modal-body">
               <form class="formModal">
-                <div>
+                <div class="debug">
                   <label for="photoUpload">Add Photo:</label>
                   <input
                     type="file"
@@ -135,17 +135,19 @@
                     accept="image/*"
                   />
                 </div>
-                <div>
-                  <label for="title">Title:</label>
+
+                <div class="">
+                  <label for="formTitle">Title:</label>
                   <input
+                    class="titleInputBox"
                     type="text"
-                    id="title"
-                    name="title"
+                    id="formTitle"
+                    name="titre"
                     placeholder="Enter title here"
                     required
                   />
                 </div>
-                <div>
+                <div class="debug">
                   <label for="category">Category:</label>
                   <select id="category" name="category" required>
                     <option value="" disabled selected>
@@ -157,7 +159,7 @@
                     <!-- Add more categories as needed -->
                   </select>
                 </div>
-                <div>
+                <div class="debug">
                   <button type="submit">Validate</button>
                 </div>
               </form>
