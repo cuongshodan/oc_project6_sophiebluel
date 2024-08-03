@@ -1,43 +1,33 @@
-export const deleteProject = async () => {
+export const deleteProject = () => {
   const deleteButtons = document.querySelectorAll(".deleteButton");
 
-  // Get the token from localStorage
-  const token = localStorage.getItem("authToken");
-
-  if (!token) {
-    console.error("No auth token found in localStorage.");
-    return;
-  }
+  let deleteItems = [];
 
   deleteButtons.forEach((button) => {
-    button.addEventListener("click", async () => {
-      const projectId = button.id; // Retrieve the ID from the button
-      console.log("Deleting project with ID:", projectId);
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-      try {
-        const response = await fetch(
-          `http://localhost:5678/api/works/${projectId}`,
-          {
-            method: "DELETE", // HTTP method for deleting a resource
-            headers: {
-              "Content-Type": "application/json", // Specify the content type
-              Authorization: `Bearer ${token}`, // Add the Bearer token for authentication
-            },
-          }
-        );
+      const projectId = button.id;
 
-        if (response.ok) {
+      // Ask for confirmation before deletion
+      const userConfirmed = window.confirm(`Are you sure you want to delete item nr ${projectId}?`);
+
+      alert("Hello, World!");
+
+      if (userConfirmed) {
+        if (!deleteItems.includes(projectId)) {
+          deleteItems.push(projectId);
           console.log(`Project with ID ${projectId} deleted successfully`);
-          // Optionally, remove the deleted item from the DOM
-          button.parentElement.remove(); // This removes the figure element containing the button
+          // Remove the item from the DOM
+          button.parentElement.remove();
         } else {
-          console.error(
-            `Failed to delete project with ID ${projectId}:`,
-            response.statusText
-          );
+          console.log(`Project with ID ${projectId} is already deleted`);
         }
-      } catch (error) {
-        console.error(`Error deleting project with ID ${projectId}:`, error);
+
+        console.log(deleteItems);
+      } else {
+        console.log(`Deletion of project ID ${projectId} was canceled by the user.`);
       }
     });
   });

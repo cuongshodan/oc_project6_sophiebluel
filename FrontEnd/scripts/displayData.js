@@ -29,4 +29,5 @@ export const displayData = async (categoryFilter = "Tous") => {
 
     gallery.appendChild(figure);
   });
+
 };
