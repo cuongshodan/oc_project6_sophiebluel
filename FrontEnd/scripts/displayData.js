@@ -20,6 +20,7 @@ export const displayData = async (categoryFilter = "Tous") => {
     const img = document.createElement("img");
     img.src = item.imageUrl;
     img.alt = item.title;
+    img.id = item.id;
 
     const figcaption = document.createElement("figcaption");
     figcaption.innerText = item.title;
