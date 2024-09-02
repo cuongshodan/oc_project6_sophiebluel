@@ -1,9 +1,6 @@
-export const deleteProject = () => {
-  console.log("hello world 0 inside deleteProject");
+export const deleteProject = (deleteItems) => {
   const deleteButtons = document.querySelectorAll(".deleteButton");
   const gallery = document.querySelector(".gallery");
-
-  let deleteItems = [];
 
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -14,19 +11,15 @@ export const deleteProject = () => {
 
       // Ask for confirmation before deletion
       const userConfirmed = window.confirm(
-        `Are you sure you want to delete item nr ${projectId}? hello`
+        `Are you sure you want to delete item nr ${projectId}?`
       );
-
-      alert("Hello, World!");
 
       if (userConfirmed) {
         if (!deleteItems.includes(projectId)) {
           deleteItems.push(projectId);
-          console.log(`Project with ID ${projectId} deleted successfully from the list`);
-          console.log("hello world 1");
+          console.log(`Project with ID ${projectId} deleted successfully`);
           // Remove the item from the DOM
           button.parentElement.remove();
-
           // Find the figure containing the img with the specific ID
           const figureToRemove = gallery
             .querySelector(`figure img[id="${projectId}"]`)

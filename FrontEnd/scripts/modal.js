@@ -1,6 +1,7 @@
 import { displayDataModal } from "./displayDataModal.js";
 import { deleteFetch } from "./deleteFetch.js";
 import { initAddPhotoModal } from "./addPhotoModal.js";
+import { deleteProject } from "./deleteProject.js";
 
 let modal = null;
 const focusableSelector = "button, a, input, textarea";
@@ -35,10 +36,9 @@ const openModal = async (e) => {
   });
 
   await displayDataModal(); // Load data into the modal if it's #modal1
-  deleteProject(); // Initialize delete functionality if it's #modal1
+  deleteProject(deleteItems); // Initialize delete functionality if it's #modal1
   addPhotoButton();
   initAddPhotoModal();
-  
 };
 
 const closeModal = (e) => {
@@ -101,55 +101,5 @@ const addPhotoButton = () => {
 
     document.querySelector(".modal-wrapper1").style.display = "none";
     document.querySelector(".modal-wrapper2").style.display = "flex";
-  });
-};
-
-const deleteProject = () => {
-  const deleteButtons = document.querySelectorAll(".deleteButton");
-  const gallery = document.querySelector(".gallery");
-
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const projectId = button.id;
-
-      // Ask for confirmation before deletion
-      const userConfirmed = window.confirm(
-        `Are you sure you want to delete item nr ${projectId}?`
-      );
-
-      if (userConfirmed) {
-        if (!deleteItems.includes(projectId)) {
-          deleteItems.push(projectId);
-          console.log(`Project with ID ${projectId} deleted successfully`);
-          // Remove the item from the DOM
-          button.parentElement.remove();
-           // Find the figure containing the img with the specific ID
-           const figureToRemove = gallery
-           .querySelector(`figure img[id="${projectId}"]`)
-           ?.closest("figure");
-         console.log("hello world 2");
-         console.log("******here===> ", figureToRemove);
-
-         // Remove the figure from the DOM
-         if (figureToRemove) {
-           figureToRemove.remove();
-           console.log(`Figure with ID ${projectId} removed successfully`);
-         } else {
-           console.log(`No figure found with an img having ID ${projectId}`);
-         }
-        } else {
-          console.log(`Project with ID ${projectId} is already deleted`);
-        }
-
-        console.log(deleteItems);
-      } else {
-        console.log(
-          `Deletion of project ID ${projectId} was canceled by the user.`
-        );
-      }
-    });
   });
 };
