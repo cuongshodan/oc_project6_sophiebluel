@@ -2,6 +2,8 @@ export const deleteProject = () => {
   const deleteButtons = document.querySelectorAll(".deleteButton");
   const gallery = document.querySelector(".gallery");
 
+
+  console.log("hello world 0 inside deleteProject");
   let deleteItems = [];
 
   deleteButtons.forEach((button) => {
