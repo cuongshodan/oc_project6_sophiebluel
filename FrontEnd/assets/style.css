@@ -358,3 +358,8 @@ footer nav ul {
   cursor: pointer;
   margin: 15px;
 }
+
+#modifyButton {
+  text-decoration: none;
+  color: black;
+}
