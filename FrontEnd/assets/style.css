@@ -239,11 +239,16 @@ nav a:hover {
   color: #1d6154;
   font-family: "Syne";
   border: none;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
   margin: 0 10px;
   border: 2px solid #1d6154;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.filter .active {
+  background-color: #1d6154;
+  color: white;
 }
 
 .gallery {

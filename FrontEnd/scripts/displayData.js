@@ -1,34 +1,55 @@
 import { getData } from "./getData.js";
 
 export const displayData = async (categoryFilter = "Tous") => {
-  const data = await getData();
-  const gallery = document.querySelector(".gallery");
+  try {
+    // Fetch data and categories
+    const [data, categories] = await Promise.all([
+      getData(),
+      fetch("http://localhost:5678/api/categories").then((res) => res.json()),
+    ]);
 
-  // Clear the existing content
-  gallery.innerHTML = "";
+    const gallery = document.querySelector(".gallery");
 
-  // Filter data based on category
-  const filteredData =
-    categoryFilter === "Tous"
-      ? data
-      : data.filter((item) => item.category.name === categoryFilter);
+    // Clear the existing content
+    gallery.innerHTML = "";
 
-  // Create and append new elements based on filtered data
-  filteredData.forEach((item) => {
-    const figure = document.createElement("figure");
+    // Find the selected category ID
+    const selectedCategory = categories.find(
+      (category) => category.name === categoryFilter
+    );
 
-    const img = document.createElement("img");
-    img.src = item.imageUrl;
-    img.alt = item.title;
-    img.id = item.id;
+    // Filter data based on the selected category
+    const filteredData =
+      categoryFilter === "Tous"
+        ? data
+        : data.filter(
+            (item) => item.categoryId === (selectedCategory?.id || null)
+          );
 
-    const figcaption = document.createElement("figcaption");
-    figcaption.innerText = item.title;
+    if (filteredData.length === 0) {
+      gallery.innerHTML = "<p>No items match this category.</p>";
+      return;
+    }
 
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
+    // Create and append new elements based on filtered data
+    filteredData.forEach((item) => {
+      const figure = document.createElement("figure");
 
-    gallery.appendChild(figure);
-  });
+      const img = document.createElement("img");
+      img.src = item.imageUrl;
+      img.alt = item.title;
+      img.id = item.id;
 
+      const figcaption = document.createElement("figcaption");
+      figcaption.innerText = item.title;
+
+      figure.appendChild(img);
+      figure.appendChild(figcaption);
+
+      gallery.appendChild(figure);
+    });
+  } catch (error) {
+    console.error("Error fetching data or categories:", error);
+    gallery.innerHTML = "<p>Failed to load data. Please try again later.</p>";
+  }
 };
