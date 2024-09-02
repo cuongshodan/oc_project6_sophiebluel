@@ -106,6 +106,7 @@ const addPhotoButton = () => {
 
 const deleteProject = () => {
   const deleteButtons = document.querySelectorAll(".deleteButton");
+  const gallery = document.querySelector(".gallery");
 
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -125,6 +126,20 @@ const deleteProject = () => {
           console.log(`Project with ID ${projectId} deleted successfully`);
           // Remove the item from the DOM
           button.parentElement.remove();
+           // Find the figure containing the img with the specific ID
+           const figureToRemove = gallery
+           .querySelector(`figure img[id="${projectId}"]`)
+           ?.closest("figure");
+         console.log("hello world 2");
+         console.log("******here===> ", figureToRemove);
+
+         // Remove the figure from the DOM
+         if (figureToRemove) {
+           figureToRemove.remove();
+           console.log(`Figure with ID ${projectId} removed successfully`);
+         } else {
+           console.log(`No figure found with an img having ID ${projectId}`);
+         }
         } else {
           console.log(`Project with ID ${projectId} is already deleted`);
         }
