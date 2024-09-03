@@ -363,3 +363,14 @@ footer nav ul {
   text-decoration: none;
   color: black;
 }
+
+.errorMessage {
+  color: red;
+  font-weight: 600;
+  margin-bottom: 30px;
+  display: none;
+}
+
+#loginForget {
+  color: black;
+}

@@ -26,10 +26,13 @@ document
         // Redirect to the projects page
         window.location.href = "./index.html";
       } else {
-        errorMessage.textContent = data.message;
+        // Display the error message if login fails
+        errorMessage.textContent = data.message || "Mot de passe incorrect.";
+        errorMessage.style.display = "block";
       }
     } catch (error) {
       console.error("Error:", error);
       errorMessage.textContent = "An error occurred. Please try again.";
+      errorMessage.style.display = "block";
     }
   });
