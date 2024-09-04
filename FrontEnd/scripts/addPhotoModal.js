@@ -113,7 +113,7 @@ const backToFirstModal = () => {
   const backToFirstModalButton = document.querySelector(".modal-back");
 
   backToFirstModalButton.addEventListener("click", function () {
-    console.log("back to first modal button clicked");
+    //console.log("back to first modal button clicked");
     document.querySelector(".modal-wrapper1").style.display = "flex";
     document.querySelector(".modal-wrapper2").style.display = "none";
   });

@@ -19,7 +19,7 @@ export const deleteFetch = async (projectItems) => {
         }
       );
 
-      if (response.ok) {
+      /* if (response.ok) {
         console.log(`Project with ID ${projectId} deleted successfully`);
       } else if (response.status === 404) {
         console.log(`Project with ID ${projectId} was already deleted`);
@@ -28,7 +28,7 @@ export const deleteFetch = async (projectItems) => {
           `Failed to delete project with ID ${projectId}:`,
           response.statusText
         );
-      }
+      } */
     } catch (error) {
       console.error(`Error deleting project with ID ${projectId}:`, error);
     }
