@@ -7,6 +7,7 @@ const addPhotoForm = () => {
   const titleInput = document.getElementById("formTitle");
   const categorySelect = document.getElementById("category");
   const validateButton = document.querySelector(".validateButton");
+  const formAddPhoto = document.querySelector(".formAddPhoto");
 
   const checkFormValidity = () => {
     const title = titleInput.value.trim();
@@ -42,6 +43,7 @@ const addPhotoForm = () => {
       customButton.style.display = "none";
       customButtonLabel.style.display = "none";
       uploadImg.src = URL.createObjectURL(file);
+      formAddPhoto.style = "padding: 0px";
     }
 
     checkFormValidity(); // Check validity when file is selected
