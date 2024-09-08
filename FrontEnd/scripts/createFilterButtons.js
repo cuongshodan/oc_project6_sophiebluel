@@ -2,12 +2,17 @@ import { displayData } from "./displayData.js";
 import { getData } from "./getData.js";
 
 export const createFilterButtons = async () => {
-  const [data, categories] = await Promise.all([
+  const [data, categoriesFromApi] = await Promise.all([
     getData(),
     fetch("http://localhost:5678/api/categories").then((res) => res.json()),
   ]);
 
   const filterContainer = document.querySelector(".filter");
+
+  // Use Set to ensure uniqueness of categories
+  const categories = new Set(
+    categoriesFromApi.map((category) => category.name)
+  );
 
   // Clear existing filter buttons (if any)
   filterContainer.innerHTML = "";
@@ -19,11 +24,11 @@ export const createFilterButtons = async () => {
   allButton.addEventListener("click", () => handleFilterClick("Tous"));
   filterContainer.appendChild(allButton);
 
-  // Create category buttons fetched from the API
+  // Create unique category buttons
   categories.forEach((category) => {
     const button = document.createElement("button");
-    button.innerText = category.name; // Assuming category object has a 'name' property
-    button.addEventListener("click", () => handleFilterClick(category.name));
+    button.innerText = category; // `category` is already the unique name
+    button.addEventListener("click", () => handleFilterClick(category));
     filterContainer.appendChild(button);
   });
 };

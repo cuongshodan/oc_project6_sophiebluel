@@ -27,7 +27,8 @@ document
         window.location.href = "./index.html";
       } else {
         // Display the error message if login fails
-        errorMessage.textContent = data.message || "Mot de passe incorrect.";
+        errorMessage.textContent =
+          data.message || "Mot de passe ou login incorrect.";
         errorMessage.style.display = "block";
       }
     } catch (error) {
